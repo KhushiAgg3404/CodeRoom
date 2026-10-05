@@ -1,38 +1,440 @@
-.App {
+/* =========================
+   HOME PAGE
+========================= */
+
+.homePageWrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #0F172A;
+  font-family: 'Poppins', sans-serif;
+}
+
+.formWrapper {
+  width: 420px;
+  padding: 38px 40px;
+
+  background-color: #111827;
+  border: 1px solid #263449;
+  border-radius: 10px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   APPLICATION NAME
+========================= */
+
+.appName {
+  margin: 0 0 8px;
+
+  color: #F8FAFC;
+  font-size: 45px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.appName span {
+  color: #60A5FA;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mainLabel {
+  margin: 7px 0 28px;
+
+  color: #94A3B8;
+
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+/* =========================
+   INPUTS
+========================= */
+
+.inputGroup {
   display: flex;
   flex-direction: column;
+  gap: 13px;
+}
+
+.inputBox {
+  width: 100%;
+  height: 44px;
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  background-color: #1E293B;
+  color: #F8FAFC;
+
+  border: 1px solid #334155;
+  border-radius: 6px;
+
+  outline: none;
+
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+
+  transition: border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.inputBox::placeholder {
+  color: #64748B;
+}
+
+.inputBox:hover {
+  border-color: #475569;
+}
+
+.inputBox:focus {
+  background-color: #1E293B;
+  border-color: #60A5FA;
+}
+
+
+/* =========================
+   JOIN BUTTON
+========================= */
+
+.btn {
+  width: 100%;
+  height: 44px;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+
+  transition: background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.joinBtn {
+  margin-top: 5px;
+
+  background-color: #3B82F6;
+  color: #FFFFFF;
+}
+
+.joinBtn:hover {
+  background-color: #2563EB;
+}
+
+.joinBtn:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================
+   CREATE ROOM
+========================= */
+
+.createInfo {
+  margin-top: 20px;
+
+  color: #64748B;
+
+  font-size: 13px;
+  text-align: center;
+}
+
+.createNewBtn {
+  margin-left: 5px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+
+  color: #60A5FA;
+
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+.createNewBtn:hover {
+  color: #93C5FD;
+  text-decoration: underline;
+}
+
+/* =========================
+   EDITOR PAGE
+========================= */
+
+.mainWrap {
+  display: flex;
+  height: 100vh;
+  background-color: #0F172A;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.aside {
+  width: 250px;
+  flex-shrink: 0;
+
+  background-color: #111827;
+  color: #F1F5F9;
+
+  border-right: 1px solid #263449;
+}
+
+.asideInner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px 20px;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.logoImage {
+  width: 140px;
+}
+
+
+/* If you're using text instead of an image */
+
+.appLogo {
+  margin: 0;
+
+  color: #F8FAFC;
+
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  text-align: center;
+}
+
+.appLogo span {
+  color: #60A5FA;
+}
+
+
+/* =========================
+   CONNECTED USERS
+========================= */
+
+.asideInner h3 {
+  margin: 0 0 18px;
+
+  color: #94A3B8;
+
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.clientsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* =========================
+   CLIENT
+========================= */
+
+.client {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
+
+  padding: 7px 8px;
+
+  color: #E2E8F0;
+
+  border-radius: 6px;
+
+  transition: background-color 0.15s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.client:hover {
+  background-color: #1E293B;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.client span {
+  font-size: 14px;
+  color: #E2E8F0;
+}
+
+
+/* =========================
+   SIDEBAR BUTTONS
+========================= */
+
+.copyBtn,
+.leaveBtn {
+  width: 100%;
+  height: 42px;
+
+  border-radius: 6px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: background-color 0.15s ease;
+}
+
+.copyBtn {
+  margin-top: auto;
+
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  border: none;
+}
+
+.copyBtn:hover {
+  background-color: #2563EB;
+}
+
+.leaveBtn {
+  margin-top: 10px;
+
+  background-color: transparent;
+  color: #F87171;
+
+  border: 1px solid #7F1D1D;
+}
+
+.leaveBtn:hover {
+  background-color: #450A0A;
+  border-color: #991B1B;
+}
+
+
+/* =========================
+   EDITOR AREA
+========================= */
+
+.editorWrap {
+  flex: 1;
+  min-width: 0;
+
+  background-color: #1E293B;
+  color: #F8FAFC;
+
+  overflow: hidden;
+}
+
+/* =========================
+   EDITOR BUTTONS
+========================= */
+
+/* =========================
+   EDITOR BUTTONS
+========================= */
+
+.copyBtn,
+.leaveBtn {
+  width: 100%;
+  height: 42px;
+
+  border-radius: 6px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* Copy Room ID */
+
+.copyBtn {
+  margin-top: auto;
+
+  background-color: #3B82F6;
+  color: #FFFFFF;
+
+  border: 1px solid #3B82F6;
+}
+
+.copyBtn:hover {
+  background-color: #2563EB;
+  border-color: #2563EB;
+}
+
+
+/* Leave */
+
+.leaveBtn {
+  margin-top: 10px;
+
+  background-color: #1E293B;
+  color: #CBD5E1;
+
+  border: 1px solid #334155;
+}
+
+.leaveBtn:hover {
+  background-color: #273449;
+  color: #F8FAFC;
+  border-color: #475569;
+}
+
+
+
+/* =========================
+   CODEMIRROR
+========================= */
+
+.CodeMirror {
+  height: 100vh !important;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+.CodeMirror * {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+.CodeMirror textarea {
+  direction: ltr !important;
+  text-align: left !important;
 }
