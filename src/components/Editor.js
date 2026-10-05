@@ -12,65 +12,65 @@ import ACTIONS from '../Actions';
 const Editor = ({ socketRef, roomId, onCodeChange }) => {
     const editorRef = useRef(null);
 
+    // Keep the latest values without making the CodeMirror effect rerun
+    const onCodeChangeRef = useRef(onCodeChange);
+    const roomIdRef = useRef(roomId);
+
+    onCodeChangeRef.current = onCodeChange;
+    roomIdRef.current = roomId;
+
     useEffect(() => {
-        const init = () => {
-            editorRef.current = CodeMirror.fromTextArea(
-                document.getElementById('realtimeEditor'),
-                {
-                    mode: {
-                        name: 'javascript',
-                        json: true,
-                    },
-                    theme: 'material-darker',
-                    autoCloseTags: true,
-                    autoCloseBrackets: true,
-                    lineNumbers: true,
-                    direction: 'ltr',
-                }
-            );
+        // Capture the socket used by this editor instance
+        const socket = socketRef.current;
 
-            editorRef.current.on('change', (instance, changes) => {
-                const { origin } = changes;
-                const code = instance.getValue();
+        const editor = CodeMirror.fromTextArea(
+            document.getElementById('realtimeEditor'),
+            {
+                mode: {
+                    name: 'javascript',
+                    json: true,
+                },
+                theme: 'material-darker',
+                autoCloseTags: true,
+                autoCloseBrackets: true,
+                lineNumbers: true,
+                direction: 'ltr',
+            }
+        );
 
-                onCodeChange(code);
+        editorRef.current = editor;
 
-                if (origin !== 'setValue') {
-                    socketRef.current.emit(ACTIONS.CODE_CHANGE, {
-                        roomId,
-                        code,
-                    });
-                }
-            });
+        editor.on('change', (instance, changes) => {
+            const { origin } = changes;
+            const code = instance.getValue();
 
-            const handleCodeChange = ({ code }) => {
-                if (
-                    code !== null &&
-                    code !== editorRef.current.getValue()
-                ) {
-                    editorRef.current.setValue(code);
-                }
-            };
+            onCodeChangeRef.current(code);
 
-            socketRef.current.on(
-                ACTIONS.CODE_CHANGE,
-                handleCodeChange
-            );
+            if (origin !== 'setValue') {
+                socket.emit(ACTIONS.CODE_CHANGE, {
+                    roomId: roomIdRef.current,
+                    code,
+                });
+            }
+        });
 
-            return handleCodeChange;
+        const handleCodeChange = ({ code }) => {
+            if (
+                code !== null &&
+                code !== editor.getValue()
+            ) {
+                editor.setValue(code);
+            }
         };
 
-        const handleCodeChange = init();
+        socket.on(ACTIONS.CODE_CHANGE, handleCodeChange);
 
         return () => {
-            socketRef.current?.off(
-                ACTIONS.CODE_CHANGE,
-                handleCodeChange
-            );
-
-            editorRef.current?.toTextArea();
+            socket.off(ACTIONS.CODE_CHANGE, handleCodeChange);
+            editor.toTextArea();
+            editorRef.current = null;
         };
-    }, []);
+    }, [socketRef]);
 
     return (
         <textarea
